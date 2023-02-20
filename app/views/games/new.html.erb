@@ -1,0 +1,19 @@
+<% start_time = Time.now %>
+<h1>New game</h1>
+
+<ul class="list-inline">
+  <% @letters.each do |letter| %>
+      <li class="list-inline-item"><%= letter %></li>
+  <% end %>
+</ul>
+
+<div class="input-group-prepend">
+
+  <form action="/score" method="post" data-turbo="false">
+    <input type="text" name="attempt" placeholder="Word?" class="form-control mb-2">
+    <input type="submit" value="Play" class="btn btn-primary">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= hidden_field_tag :start_time, @start_time %>
+    <%= hidden_field_tag :letters, @letters %>
+  </form>
+</div>
